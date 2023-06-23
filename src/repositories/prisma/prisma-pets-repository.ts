@@ -10,9 +10,10 @@ export class PrismaPetsRepository implements PetsRepositoryProps {
     return pet
   }
 
-  async listUnadoptedPets() {
+  async listUnadoptedPetsByCity(city: string) {
     const unAdoptedPets = prisma.pet.findMany({
       where: {
+        city,
         is_adopted: false,
       },
     })

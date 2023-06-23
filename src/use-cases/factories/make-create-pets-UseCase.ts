@@ -1,5 +1,5 @@
 import { PrismaPetsRepository } from '@/repositories/prisma/prisma-pets-repository'
-import { CreatePetUseCase } from '../create-pet-useCase'
+import { CreatePetUseCase } from '../pets/create-pet-useCase'
 
 /* Factories para criar os casos de uso, facilitar */
 export function makeCreatePetsUseCase() {
