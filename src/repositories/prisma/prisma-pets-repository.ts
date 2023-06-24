@@ -37,4 +37,17 @@ export class PrismaPetsRepository implements PetsRepositoryProps {
     })
     return petsByOrg
   }
+
+  searchManyPets(query: string, page: number) {
+    const pets = prisma.pet.findMany({
+      where: {
+        name: {
+          contains: query,
+        },
+      },
+      take: 20,
+      skip: (page - 1) * 20,
+    })
+    return pets
+  }
 }

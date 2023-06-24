@@ -1,9 +1,9 @@
 import { PrismaPetsRepository } from '@/repositories/prisma/prisma-pets-repository'
-import { CreatePetUseCase } from '../pets/create-pet-useCase'
+import { SearchPetsUseCase } from '@/use-cases/pets/search-pets-UseCase'
 
 /* Factories para criar os casos de uso, facilitar */
-export function makeCreatePetsUseCase() {
+export function makeSearchPetsUseCase() {
   const checkInRepository = new PrismaPetsRepository()
-  const useCase = new CreatePetUseCase(checkInRepository)
+  const useCase = new SearchPetsUseCase(checkInRepository)
   return useCase
 }

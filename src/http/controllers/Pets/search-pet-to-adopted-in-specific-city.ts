@@ -1,4 +1,4 @@
-import { makeSearchPetsToAdoptedByCityUseCase } from '@/use-cases/factories/make-search-pets-to-adopted-by-city'
+import { makeSearchPetsToAdoptedByCityUseCase } from '@/use-cases/factories/pets/make-search-pets-to-adopted-by-city'
 import { FastifyReply, FastifyRequest } from 'fastify'
 import { z } from 'zod'
 
