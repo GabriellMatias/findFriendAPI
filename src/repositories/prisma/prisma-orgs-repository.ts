@@ -1,23 +1,26 @@
-import { Prisma, Org } from '@prisma/client'
+import { Prisma } from '@prisma/client'
 import { OrgsRepositoryProps } from '../interfaces/interface-orgs-repository'
 import { prisma } from '@/lib/prisma'
 
 export class PrismaOrgsRepository implements OrgsRepositoryProps {
-  findByEmail(email: string): Promise<Org | null> {
-    const org = prisma.org.findUnique({
+  async findByEmail(email: string) {
+    const org = await prisma.org.findUnique({
       where: { email },
     })
     return org
   }
 
-  registerOrg(data: Prisma.OrgCreateInput): Promise<Org> {
-    const org = prisma.org.create({
+  async registerOrg(data: Prisma.OrgCreateInput) {
+    const org = await prisma.org.create({
       data,
     })
     return org
   }
 
-  findById(id: string): Promise<Org | null> {
-    throw new Error('Method not implemented.')
+  async findById(id: string) {
+    const org = await prisma.org.findUnique({
+      where: { id },
+    })
+    return org
   }
 }

@@ -4,14 +4,14 @@ import { prisma } from '@/lib/prisma'
 
 export class PrismaPetsRepository implements PetsRepositoryProps {
   async create(data: Prisma.PetCreateInput) {
-    const pet = prisma.pet.create({
+    const pet = await prisma.pet.create({
       data,
     })
     return pet
   }
 
   async listUnadoptedPetsByCity(city: string) {
-    const unAdoptedPets = prisma.pet.findMany({
+    const unAdoptedPets = await prisma.pet.findMany({
       where: {
         city,
         is_adopted: false,
@@ -21,7 +21,7 @@ export class PrismaPetsRepository implements PetsRepositoryProps {
   }
 
   async listPetsByOrg(OrgId: string) {
-    const petsByOrg = prisma.pet.findMany({
+    const petsByOrg = await prisma.pet.findMany({
       where: {
         org_id: OrgId,
       },
@@ -30,7 +30,7 @@ export class PrismaPetsRepository implements PetsRepositoryProps {
   }
 
   async listPetsByOwner(OwnerId: string) {
-    const petsByOrg = prisma.pet.findMany({
+    const petsByOrg = await prisma.pet.findMany({
       where: {
         owner_id: OwnerId,
       },
@@ -38,8 +38,8 @@ export class PrismaPetsRepository implements PetsRepositoryProps {
     return petsByOrg
   }
 
-  searchManyPets(query: string, page: number) {
-    const pets = prisma.pet.findMany({
+  async searchManyPets(query: string, page: number) {
+    const pets = await prisma.pet.findMany({
       where: {
         name: {
           contains: query,

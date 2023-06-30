@@ -10,15 +10,19 @@ export async function registerPetOnOrg(
     name: z.string(),
     city: z.string(),
     isAdopted: z.boolean().default(false),
+    orgId: z.string(),
   })
 
-  const { city, isAdopted, name } = createPetBodySchema.parse(request.body)
+  const { city, isAdopted, name, orgId } = createPetBodySchema.parse(
+    request.body,
+  )
 
   const createPetUseCase = makeCreatePetsUseCase()
   const pet = await createPetUseCase.execute({
     city,
     isAdopted,
     name,
+    orgId,
   })
   return reply.status(201).send({ pet })
 }

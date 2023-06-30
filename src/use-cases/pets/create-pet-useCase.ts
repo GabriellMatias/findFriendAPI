@@ -5,6 +5,7 @@ interface CreatePetUseCaseParams {
   name: string
   city: string
   isAdopted: boolean
+  orgId: string
 }
 
 interface CreatePetUseCaseResponse {
@@ -18,11 +19,13 @@ export class CreatePetUseCase {
     city,
     isAdopted,
     name,
+    orgId,
   }: CreatePetUseCaseParams): Promise<CreatePetUseCaseResponse> {
     const pet = await this.petsRepository.create({
       city,
       name,
       is_adopted: isAdopted,
+      org: { connect: { id: orgId } },
     })
     return { pet }
   }
